@@ -1,7 +1,11 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import TableComponent from "@/components/Table";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
+import { Heading } from "@/components/ui/heading";
+import { ArrowDownToLine, CheckCircle, Leaf, Plus } from "lucide-react";
 import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import PaginationComponent from "@/components/PaginationComponent";
 
 const perks = [
   {
@@ -30,12 +34,11 @@ export default function Home() {
       <MaxWidthWrapper>
         <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Your marketplace for high-quality {""}
-            <span className="text-blue-600">digital assets</span>.
+            Assessment Test For Web Developer :{" "}
+            <span className="text-rose-800 ">AISENSUM</span>
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
-            Welcome to DigitalHippo. Every asset on out platform is verified by
-            out team to ensure our highest quality standards
+            A web application that serves as a basic customer survey data system
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="/products" className={buttonVariants()}>
@@ -45,7 +48,31 @@ export default function Home() {
           </div>
         </div>
       </MaxWidthWrapper>
-      <section className="border-t border-gray0299 bg-gray50">
+      <section className="border-t border-gray-200 bg-gray-50">
+        <MaxWidthWrapper className="py-20">
+          <div className="flex flex-col justify-center items-center gap-8">
+            <div className="w-full">
+              <div className="flex items-center justify-between">
+                <Heading
+                  title={`Products (2)`}
+                  description="Manage products for your store"
+                />
+                <Button>
+                  <Plus className="mr-2 h-4 w-4" /> Add New
+                </Button>
+              </div>
+            </div>
+            <div className="w-full flex flex-col gap-2">
+              <Input type="email" placeholder="Email" />
+              <TableComponent />
+            </div>
+            <div className="w-full">
+              <PaginationComponent />
+            </div>
+          </div>
+        </MaxWidthWrapper>
+      </section>
+      {/* <section className="border-t border-gray-200 bg-gray-50">
         <MaxWidthWrapper className="py-20">
           <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
             {perks.map((perk) => (
@@ -70,7 +97,7 @@ export default function Home() {
             ))}
           </div>
         </MaxWidthWrapper>
-      </section>
+      </section> */}
     </>
   );
 }
