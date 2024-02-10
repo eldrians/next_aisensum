@@ -1,10 +1,13 @@
 "use client";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+
+import React, { useState } from "react";
+import Link from "next/link";
+
+import { MaxWidthWrapper, DataTable, CustomerForm } from "@/components";
+
+//shadcn
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Plus } from "lucide-react";
-import Link from "next/link";
-import { Input } from "@/components/ui/input";
 import {
   Card,
   CardHeader,
@@ -12,7 +15,6 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { DataTableDemo } from "@/components/Tes";
 import {
   Drawer,
   DrawerClose,
@@ -23,15 +25,15 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { CustomerForm } from "@/components/CustomerForm";
-import { useState } from "react";
+
+// icons
+import { Plus } from "lucide-react";
+
+//lib
 import { cn } from "@/lib/utils";
 
 export default function Home() {
-  // State to track the switch status
-  const [isOn, setIsOn] = useState(false);
-
-  // Function to toggle the switch status
+  const [isOn, setIsOn] = useState(true);
   const toggleSwitch = () => {
     setIsOn(!isOn);
   };
@@ -99,7 +101,7 @@ export default function Home() {
                 </Drawer>
               </CardHeader>
               <CardContent>
-                <DataTableDemo />
+                <DataTable />
               </CardContent>
             </Card>
             <div className="w-2/5 h-auto hidden lg:flex lg:flex-col lg:gap-4">
@@ -109,9 +111,7 @@ export default function Home() {
               <Card className={cn("w-full", isOn ? "hidden" : "")}>
                 <CardHeader className="flex flex-row justify-between">
                   <div className="flex flex-col">
-                    <CardTitle className="text-blue-500">
-                      Update Customers
-                    </CardTitle>
+                    <CardTitle>Update Customers</CardTitle>
                     <CardDescription>Update customer here</CardDescription>
                   </div>
                 </CardHeader>

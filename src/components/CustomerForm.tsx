@@ -35,7 +35,7 @@ const formSchema = z.object({
   fav_color: z.string(),
 });
 
-export function CustomerForm() {
+const CustomerForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -127,4 +127,6 @@ export function CustomerForm() {
       </form>
     </Form>
   );
-}
+};
+
+export default CustomerForm;

@@ -23,7 +23,6 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -157,7 +156,7 @@ export const columns: ColumnDef<Customer>[] = [
   },
 ];
 
-export function DataTableDemo() {
+const DataTable = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -332,4 +331,6 @@ export function DataTableDemo() {
       </div>
     </div>
   );
-}
+};
+
+export default DataTable;
