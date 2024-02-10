@@ -61,7 +61,7 @@ export default function Home() {
       </MaxWidthWrapper>
       {/* 1 */}
       <section className="border-t border-gray-200 bg-gray-100">
-        <MaxWidthWrapper className="flex flex-row justify-center items-start gap-4 h-fit">
+        <MaxWidthWrapper className="flex flex-row justify-center items-start gap-4 h-fit py-6">
           <Card className="w-4/6 p-6">
             <div className="flex flex-col justify-center items-center gap-4">
               <div className="w-full">
