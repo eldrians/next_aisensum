@@ -49,6 +49,8 @@ const CustomerForm = () => {
     console.log(values);
   }
 
+  const colorTemp = "#FF0";
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -103,10 +105,8 @@ const CustomerForm = () => {
                       <SelectItem value={color.hex} key={color.hex}>
                         <div className="flex flex-row gap-2 items-center">
                           <div
-                            className={cn(
-                              "h-3 w-3 rounded-full border border-slate-400",
-                              `bg-[${color.hex}]`
-                            )}
+                            style={{ backgroundColor: color.hex }}
+                            className="h-3 w-3 rounded-full border border-slate-400"
                           />
                           <div className="text-xs capitalize">
                             {color.color}

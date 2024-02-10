@@ -1,15 +1,15 @@
 export const COLOR_ITEMS = [
   {
+    hex: "#FF0000",
+    color: "red",
+  },
+  {
     hex: "#FFF",
     color: "white",
   },
   {
     hex: "#000",
     color: "black",
-  },
-  {
-    hex: "#FF0000",
-    color: "red",
   },
   {
     hex: "#FF7F00",
