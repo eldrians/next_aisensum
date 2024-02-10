@@ -103,7 +103,9 @@ export default function Home() {
               </CardContent>
             </Card>
             <div className="w-2/5 h-auto hidden lg:flex lg:flex-col lg:gap-4">
-              <Button onClick={toggleSwitch}>{isOn ? "ON" : "OFF"}</Button>
+              <Button onClick={toggleSwitch}>
+                {isOn ? "Update" : "Hapus Update"}
+              </Button>
               <Card className={cn("w-full", isOn ? "hidden" : "")}>
                 <CardHeader className="flex flex-row justify-between">
                   <div className="flex flex-col">
