@@ -1,11 +1,14 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import TableComponent from "@/components/Table";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Heading } from "@/components/ui/heading";
 import { ArrowDownToLine, CheckCircle, Leaf, Plus } from "lucide-react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import PaginationComponent from "@/components/PaginationComponent";
+import { Card } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
 
 const perks = [
   {
@@ -32,46 +35,84 @@ export default function Home() {
   return (
     <>
       <MaxWidthWrapper>
-        <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Assessment Test For Web Developer :{" "}
-            <span className="text-rose-800 ">AISENSUM</span>
+        <div className="py-20 mx-auto text-center flex flex-col items-center max-w-4xl">
+          <div className="pb-1">
+            <Badge variant="outline">Axel Eldrian Hadiwibowo</Badge>
+          </div>
+          <h1 className="text-4xl font-bold tracking-tighter text-gray-900 sm:text-5xl">
+            Assessment Test For Web Developer
+            {/* <span className="text-rose-800 ">AISENSUM</span> */}
           </h1>
-          <p className="mt-6 text-lg max-w-prose text-muted-foreground">
+          <p className="mt-3 text-lg max-w-prose text-muted-foreground">
             A web application that serves as a basic customer survey data system
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <Link href="/products" className={buttonVariants()}>
-              Browse Trending
+              <Button>
+                <p>Final Task!</p>
+              </Button>
             </Link>
-            <Button variant="ghost">Our quality promise &rarr;</Button>
+            <Button variant="ghost" size="sm">
+              My Linkedin &rarr;
+            </Button>
           </div>
         </div>
       </MaxWidthWrapper>
+      {/* 1 */}
       <section className="border-t border-gray-200 bg-gray-50">
-        <MaxWidthWrapper className="py-20">
-          <div className="flex flex-col justify-center items-center gap-8">
-            <div className="w-full">
-              <div className="flex items-center justify-between">
-                <Heading
-                  title={`Products (2)`}
-                  description="Manage products for your store"
-                />
-                <Button>
-                  <Plus className="mr-2 h-4 w-4" /> Add New
-                </Button>
+        <MaxWidthWrapper className="flex flex-row justify-center items-start gap-4 h-fit">
+          <Card className="w-4/6 p-6">
+            <div className="flex flex-col justify-center items-center gap-8">
+              <div className="w-full">
+                <div className="flex items-center justify-between">
+                  <Heading
+                    title="Customers"
+                    description="Here's a list of customers!"
+                  />
+                  <Button size="sm">
+                    <Plus className="mr-2 h-4 w-4" /> Add New
+                  </Button>
+                </div>
+              </div>
+              <div className="w-full flex flex-col gap-2">
+                <Input type="text" placeholder="Search..." />
+                <TableComponent />
+              </div>
+              <div className="w-full">
+                <PaginationComponent />
               </div>
             </div>
-            <div className="w-full flex flex-col gap-2">
-              <Input type="email" placeholder="Email" />
-              <TableComponent />
+          </Card>
+
+          <Card className="w-2/6 p-6 h-auto">
+            <div className="flex flex-col justify-center items-center gap-8">
+              <div className="w-full">
+                <div className="flex items-center justify-between">
+                  <Heading
+                    title="Add customer"
+                    description="add customer here!"
+                  />
+                </div>
+              </div>
+              <div className="w-full flex flex-col gap-2">
+                <div>
+                  <Label htmlFor="terms" >Name</Label>
+                  <Input type="text" placeholder="Search..." />
+                </div>
+                <div>
+                  <Label htmlFor="terms">Username (instagram)</Label>
+                  <Input type="text" placeholder="Search..." />
+                </div>
+                <div>
+                  <Label htmlFor="terms">Favourite Color</Label>
+                  <Input type="text" placeholder="Search..." />
+                </div>
+              </div>
             </div>
-            <div className="w-full">
-              <PaginationComponent />
-            </div>
-          </div>
+          </Card>
         </MaxWidthWrapper>
       </section>
+
       {/* <section className="border-t border-gray-200 bg-gray-50">
         <MaxWidthWrapper className="py-20">
           <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">

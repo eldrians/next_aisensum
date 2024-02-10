@@ -40,18 +40,18 @@ const data = [
     instagram: "@instagram",
     color: "black",
   },
-  {
-    id: "6",
-    name: "aldrin",
-    instagram: "@instagram",
-    color: "blue",
-  },
-  {
-    id: "7",
-    name: "hadiwibowo",
-    instagram: "@instagram",
-    color: "black",
-  },
+  // {
+  //   id: "6",
+  //   name: "aldrin",
+  //   instagram: "@instagram",
+  //   color: "blue",
+  // },
+  // {
+  //   id: "7",
+  //   name: "hadiwibowo",
+  //   instagram: "@instagram",
+  //   color: "black",
+  // },
 ];
 
 const TableComponent = () => {
