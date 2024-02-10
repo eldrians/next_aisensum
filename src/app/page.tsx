@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import PaginationComponent from "@/components/PaginationComponent";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { DataTableDemo } from "@/components/Tes";
 
 const perks = [
   {
@@ -59,33 +60,29 @@ export default function Home() {
         </div>
       </MaxWidthWrapper>
       {/* 1 */}
-      <section className="border-t border-gray-200 bg-gray-50">
+      <section className="border-t border-gray-200 bg-gray-100">
         <MaxWidthWrapper className="flex flex-row justify-center items-start gap-4 h-fit">
           <Card className="w-4/6 p-6">
-            <div className="flex flex-col justify-center items-center gap-8">
+            <div className="flex flex-col justify-center items-center gap-4">
               <div className="w-full">
                 <div className="flex items-center justify-between">
                   <Heading
                     title="Customers"
                     description="Here's a list of customers!"
                   />
-                  <Button size="sm">
+                  <Button size="sm" className="sm:hidden">
                     <Plus className="mr-2 h-4 w-4" /> Add New
                   </Button>
                 </div>
               </div>
               <div className="w-full flex flex-col gap-2">
-                <Input type="text" placeholder="Search..." />
-                <TableComponent />
-              </div>
-              <div className="w-full">
-                <PaginationComponent />
+                <DataTableDemo></DataTableDemo>
               </div>
             </div>
           </Card>
 
           <Card className="w-2/6 p-6 h-auto">
-            <div className="flex flex-col justify-center items-center gap-8">
+            <div className="flex flex-col justify-center items-center gap-4">
               <div className="w-full">
                 <div className="flex items-center justify-between">
                   <Heading
@@ -94,19 +91,44 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="w-full flex flex-col gap-2">
-                <div>
-                  <Label htmlFor="terms" >Name</Label>
-                  <Input type="text" placeholder="Search..." />
+              <div className="w-full flex flex-col gap-4">
+                <div className="flex flex-col gap-2 ">
+                  <Label htmlFor="terms" className="text-xs">
+                    Name
+                  </Label>
+                  <Input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full"
+                  />
                 </div>
-                <div>
-                  <Label htmlFor="terms">Username (instagram)</Label>
-                  <Input type="text" placeholder="Search..." />
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="terms" className="text-xs">
+                    Username (instagram)
+                  </Label>
+                  <Input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full"
+                  />
                 </div>
-                <div>
-                  <Label htmlFor="terms">Favourite Color</Label>
-                  <Input type="text" placeholder="Search..." />
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="terms" className="text-xs">
+                    Favourite Color
+                  </Label>
+                  <Input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full"
+                  />
                 </div>
+              </div>
+              <div className="w-full gap-2 flex flex-row justify-end">
+                <Link href="/products" className={buttonVariants()}>
+                  <Button className="text-xs" size="sm">
+                    <Plus className="mr-2 h-4 w-4" /> Add New
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
