@@ -1,12 +1,10 @@
+"use client";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import TableComponent from "@/components/Table";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heading } from "@/components/ui/heading";
-import { ArrowDownToLine, CheckCircle, Leaf, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import PaginationComponent from "@/components/PaginationComponent";
 import {
   Card,
   CardHeader,
@@ -14,8 +12,21 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { DataTableDemo } from "@/components/Tes";
+// import { DataTableDemo } from "@/components/Tes";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { CustomerForm } from "@/components/CustomerForm";
 
 export default function Home() {
   return (
@@ -54,16 +65,36 @@ export default function Home() {
                   <CardTitle>Customers</CardTitle>
                   <CardDescription>Here's a list of customers!</CardDescription>
                 </div>
-                <Button size="xs" className="lg:hidden">
-                  <Plus className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:block">Add</span>
-                </Button>
+                <Drawer>
+                  <DrawerTrigger asChild>
+                    <Button size="xs" className="lg:hidden">
+                      <Plus className="h-4 w-4 md:mr-2" />
+                      <span className="hidden md:block">Add</span>
+                    </Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <div className="mx-auto w-full max-w-xl">
+                      <DrawerHeader>
+                        <DrawerTitle>Add Customer</DrawerTitle>
+                        <DrawerDescription>
+                          add customer here!
+                        </DrawerDescription>
+                      </DrawerHeader>
+                      <div>
+                        <CustomerForm />
+                      </div>
+                    </div>
+                    <DrawerFooter className="pt-0">
+                      <DrawerClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
               </CardHeader>
-              <CardContent>
-                <DataTableDemo></DataTableDemo>
-              </CardContent>
+              <CardContent>{/* <DataTableDemo></DataTableDemo> */}</CardContent>
             </Card>
-            <Card className="w-2/6 p-6 h-auto hidden lg:block">
+            {/* <Card className="w-2/6 p-6 h-auto hidden lg:block">
               <div className="flex flex-col justify-center items-center gap-4">
                 <div className="w-full">
                   <div className="flex items-center justify-between">
@@ -86,7 +117,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <Label htmlFor="terms" className="text-xs">
-                      Username (instagram)
+                      name (instagram)
                     </Label>
                     <Input
                       type="text"
@@ -113,7 +144,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-            </Card>
+            </Card> */}
           </div>
         </MaxWidthWrapper>
       </section>
