@@ -12,7 +12,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-// import { DataTableDemo } from "@/components/Tes";
+import { DataTableDemo } from "@/components/Tes";
 import {
   Drawer,
   DrawerClose,
@@ -23,12 +23,18 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { CustomerForm } from "@/components/CustomerForm";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
+  // State to track the switch status
+  const [isOn, setIsOn] = useState(false);
+
+  // Function to toggle the switch status
+  const toggleSwitch = () => {
+    setIsOn(!isOn);
+  };
   return (
     <>
       <MaxWidthWrapper>
@@ -92,59 +98,37 @@ export default function Home() {
                   </DrawerContent>
                 </Drawer>
               </CardHeader>
-              <CardContent>{/* <DataTableDemo></DataTableDemo> */}</CardContent>
+              <CardContent>
+                <DataTableDemo />
+              </CardContent>
             </Card>
-            {/* <Card className="w-2/6 p-6 h-auto hidden lg:block">
-              <div className="flex flex-col justify-center items-center gap-4">
-                <div className="w-full">
-                  <div className="flex items-center justify-between">
-                    <Heading
-                      title="Add customer"
-                      description="add customer here!"
-                    />
+            <div className="w-2/5 h-auto hidden lg:flex lg:flex-col lg:gap-4">
+              <Button onClick={toggleSwitch}>{isOn ? "ON" : "OFF"}</Button>
+              <Card className={cn("w-full", isOn ? "hidden" : "")}>
+                <CardHeader className="flex flex-row justify-between">
+                  <div className="flex flex-col">
+                    <CardTitle className="text-blue-500">
+                      Update Customers
+                    </CardTitle>
+                    <CardDescription>Update customer here</CardDescription>
                   </div>
-                </div>
-                <div className="w-full flex flex-col gap-4">
-                  <div className="flex flex-col gap-2 ">
-                    <Label htmlFor="terms" className="text-xs">
-                      Name
-                    </Label>
-                    <Input
-                      type="text"
-                      placeholder="Search..."
-                      className="w-full"
-                    />
+                </CardHeader>
+                <CardContent>
+                  <CustomerForm />
+                </CardContent>
+              </Card>
+              <Card className="w-full">
+                <CardHeader className="flex flex-row justify-between">
+                  <div className="flex flex-col">
+                    <CardTitle>Add Customers</CardTitle>
+                    <CardDescription>Add customer here</CardDescription>
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="terms" className="text-xs">
-                      name (instagram)
-                    </Label>
-                    <Input
-                      type="text"
-                      placeholder="Search..."
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="terms" className="text-xs">
-                      Favourite Color
-                    </Label>
-                    <Input
-                      type="text"
-                      placeholder="Search..."
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-                <div className="w-full gap-2 flex flex-row justify-end">
-                  <Link href="/products" className={buttonVariants()}>
-                    <Button className="text-xs" size="sm">
-                      <Plus className="mr-2 h-4 w-4" /> Add New
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </Card> */}
+                </CardHeader>
+                <CardContent>
+                  <CustomerForm />
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </MaxWidthWrapper>
       </section>
