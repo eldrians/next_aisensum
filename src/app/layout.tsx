@@ -28,10 +28,10 @@ export default function RootLayout({
         className={cn("relative h-full font-sans antialiased", inter.className)}
       >
         <Providers>
-          <main className="relative flex flex-col min-h-screen">
+          <div className="relative flex flex-col min-h-screen">
             <Navbar />
             <div className="flex-grow flex-1">{children}</div>
-          </main>
+          </div>
         </Providers>
       </body>
     </html>
