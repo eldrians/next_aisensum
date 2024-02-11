@@ -4,7 +4,7 @@ import React from "react";
 
 //components
 import { DataTable } from "@/components";
-import { AddCustomer } from "@/app/(components)";
+import AddCustomerSection from "../add-customer";
 
 //shadcn
 import {
@@ -15,7 +15,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 
-const DataCustomer = () => {
+const TableCustomerSection = () => {
   return (
     <Card className="w-full lg:w-4/6">
       <CardHeader className="flex flex-row justify-between">
@@ -23,7 +23,7 @@ const DataCustomer = () => {
           <CardTitle>Customers</CardTitle>
           <CardDescription>Here's a list of customers!</CardDescription>
         </div>
-        <AddCustomer type="mobile" />
+        <AddCustomerSection type="mobile" />
       </CardHeader>
       <CardContent>
         <DataTable />
@@ -32,4 +32,4 @@ const DataCustomer = () => {
   );
 };
 
-export default DataCustomer;
+export default TableCustomerSection;

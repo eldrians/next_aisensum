@@ -22,7 +22,8 @@ import { Button } from "@/components/ui/button";
 //icon
 import { Plus } from "lucide-react";
 
-const AddCustomer = ({ type = "desktop" }: { type?: "mobile" | "desktop" }) => {
+const AddCustomerSection
+ = ({ type = "desktop" }: { type?: "mobile" | "desktop" }) => {
   const FormType = () => {
     if (type == "desktop") {
       return (
@@ -68,4 +69,5 @@ const AddCustomer = ({ type = "desktop" }: { type?: "mobile" | "desktop" }) => {
   return <FormType />;
 };
 
-export default AddCustomer;
+export default AddCustomerSection
+;

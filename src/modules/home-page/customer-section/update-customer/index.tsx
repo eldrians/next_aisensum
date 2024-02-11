@@ -3,16 +3,16 @@
 import React from "react";
 
 //components
-import { CustomerForm, MaxWidthWrapper, DataTable } from "@/components";
+import { CustomerForm } from "@/components";
 
 //shadcn
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-const UpdateCustomer = () => {
+const UpdateCustomerSection = () => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Add Customers</CardTitle>
+        <CardTitle>Update Customers</CardTitle>
       </CardHeader>
       <CardContent>
         <CustomerForm />
@@ -21,4 +21,4 @@ const UpdateCustomer = () => {
   );
 };
 
-export default UpdateCustomer;
+export default UpdateCustomerSection;
