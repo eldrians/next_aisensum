@@ -3,7 +3,7 @@
 import React from "react";
 
 //components
-import { CustomerForm } from "@/components";
+import { CustomerForm, MaxWidthWrapper, DataTable } from "@/components";
 
 //shadcn
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";

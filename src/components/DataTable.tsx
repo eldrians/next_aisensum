@@ -47,40 +47,40 @@ const data: Customer[] = [
   {
     id: "m5gr84i9",
     name: "Axel Eldrian Hadiwibowo",
-    fav_color: "000000",
     username_ig: "axeldrian_",
+    fav_color: "#FF0000",
   },
   {
     id: "3u1reuv4",
     name: "Aldrin Hadiwibowo",
-    fav_color: "000000",
     username_ig: "aldrin45",
+    fav_color: "#FFF",
   },
   {
     id: "derv1ws0",
     name: "Ella Ismalina",
-    fav_color: "000000",
     username_ig: "Monserrat44",
+    fav_color: "#000",
   },
   {
     id: "5kma53ae",
     name: "Elon Musk",
-    fav_color: "000000",
     username_ig: "Silas22",
+    fav_color: "#FF7F00",
   },
   {
     id: "bhqecj4p",
     name: "Xi Jinping",
-    fav_color: "000000",
     username_ig: "carmella",
+    fav_color: "#00FF00",
   },
 ];
 
 export type Customer = {
   id: string;
   name: string;
-  fav_color: string;
   username_ig: string;
+  fav_color: string;
 };
 
 export const columns: ColumnDef<Customer>[] = [
@@ -127,8 +127,11 @@ export const columns: ColumnDef<Customer>[] = [
     header: "Color",
     cell: ({ row }) => (
       <div className="capitalize flex flex-row gap-1 items-center">
-        <div className="h-3 w-3 rounded-full bg-red-700" />
-        <div className="lowercase text-xs">#{row.getValue("fav_color")}</div>
+        <div
+          style={{ backgroundColor: row.getValue("fav_color") }}
+          className="h-3 w-3 rounded-full"
+        />
+        <div className="lowercase text-xs">{row.getValue("fav_color")}</div>
       </div>
     ),
   },
