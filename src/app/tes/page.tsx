@@ -1,4 +1,4 @@
-import TesTanStack from '@/components/TesTanStack'
+import TesTanStack from '@/components/DeleteSoon/TesTanStack'
 import React from 'react'
 
 const page = () => {

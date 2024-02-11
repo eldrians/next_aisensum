@@ -3,7 +3,7 @@
 import React from "react";
 
 //components
-import { DataTable } from "@/components";
+import { TableComponent } from "@/components";
 import AddCustomerSection from "../add-customer";
 
 //shadcn
@@ -14,8 +14,200 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+//types
+import { TCustomer } from "@/types/Customer";
 
+//tanstack
+import { useState } from "react";
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import {
+  ArrowUpDown,
+  ChevronDown,
+  MoreHorizontal,
+  Settings2,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+const data: TCustomer[] = [
+  {
+    id: "m5gr84i9",
+    name: "Axel Eldrian Hadiwibowo",
+    username_ig: "axeldrian_",
+    fav_color: "#FF0000",
+  },
+  {
+    id: "3u1reuv4",
+    name: "Aldrin Hadiwibowo",
+    username_ig: "aldrin45",
+    fav_color: "#FFF",
+  },
+  {
+    id: "derv1ws0",
+    name: "Ella Ismalina",
+    username_ig: "Monserrat44",
+    fav_color: "#000",
+  },
+  {
+    id: "5kma53ae",
+    name: "Elon Musk",
+    username_ig: "Silas22",
+    fav_color: "#FF7F00",
+  },
+  {
+    id: "bhqecj4p",
+    name: "Xi Jinping XX",
+    username_ig: "carmella",
+    fav_color: "#00FF00",
+  },
+];
+
+export const columns: ColumnDef<TCustomer>[] = [
+  {
+    accessorKey: "name",
+    header: ({ column }) => {
+      return (
+        <div className="flex flex-row items-center gap-2">
+          <h3 className="">Name</h3>
+          <div
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="cursor-pointer group"
+          >
+            <ArrowUpDown className="h-3 w-3 group-hover:font-bold group-hover:text-slate-900 " />
+          </div>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      return <div className="font-medium">{row.getValue("name")}</div>;
+    },
+  },
+  {
+    accessorKey: "username_ig",
+    header: ({ column }) => {
+      return (
+        <div className="flex flex-row items-center gap-2">
+          <h3 className="">Instagram</h3>
+          <div
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="cursor-pointer group"
+          >
+            <ArrowUpDown className="h-3 w-3 group-hover:font-bold group-hover:text-slate-900 " />
+          </div>
+        </div>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="lowercase text-xs">@{row.getValue("username_ig")}</div>
+    ),
+  },
+  {
+    accessorKey: "fav_color",
+    header: "Color",
+    cell: ({ row }) => (
+      <div className="capitalize flex flex-row gap-1 items-center">
+        <div
+          style={{ backgroundColor: row.getValue("fav_color") }}
+          className="h-3 w-3 rounded-full border border-slate-400"
+        />
+        <div className="lowercase text-xs">{row.getValue("fav_color")}</div>
+      </div>
+    ),
+  },
+  {
+    id: "actions",
+    enableHiding: false,
+    cell: () => {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Update</DropdownMenuItem>
+            <DropdownMenuItem>Delete</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
+  },
+];
 const TableCustomerSection = () => {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
+  // const { data, isLoading, isError } = useQuery<any>({
+  //   queryKey: ["customer"],
+  //   queryFn: () =>
+  //     fetch("http://127.0.0.1:5000/customer").then((res) => res.json()),
+  // });
+  // if (isLoading) {
+  //   return (
+  //     <main className="mt-4 flex min-h-screen flex-col items-center">
+  //       It Is Loading ...
+  //     </main>
+  //   );
+  // }
+  // if (isError) {
+  //   return (
+  //     <main className="mt-4 flex min-h-screen flex-col items-center">
+  //       It Is Error ...
+  //     </main>
+  //   );
+  // }
+  const table = useReactTable({
+    data,
+    columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+    },
+  });
   return (
     <Card className="w-full lg:w-4/6">
       <CardHeader className="flex flex-row justify-between">
@@ -26,7 +218,7 @@ const TableCustomerSection = () => {
         <AddCustomerSection type="mobile" />
       </CardHeader>
       <CardContent>
-        <DataTable />
+        <TableComponent columns={columns} data={table} searchColumnName="name"/>
       </CardContent>
     </Card>
   );

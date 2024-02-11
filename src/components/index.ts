@@ -1,7 +1,7 @@
 import BaseLayout from "./layouts/BaseLayout";
 import Navbar from "./Navbar";
-import DataTable from "./DataTable";
+import TableComponent from "./TableComponent";
 import CustomerForm from "./CustomerForm";
 import Providers from "./Providers";
 
-export { BaseLayout, Navbar, DataTable, CustomerForm, Providers };
+export { BaseLayout, Navbar, TableComponent, CustomerForm, Providers };
