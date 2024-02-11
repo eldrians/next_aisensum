@@ -23,8 +23,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { COLOR_ITEMS } from "@/constants";
-import { cn } from "@/lib/utils";
-import { api } from "@/lib/api";
+import { cn } from "@/libs/utils";
+import { api } from "@/libs/api";
 // import { usePostCustomer } from "@/hooks/landing-page/hook";
 
 //tanstack

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 const apiConfig: AxiosRequestConfig = {
-  baseURL: "http://127.0.0.1:5000",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 };
 
 const api = axios.create(apiConfig);

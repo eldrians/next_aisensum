@@ -1,7 +1,7 @@
 "use client";
 
 //types
-import { TCustomer } from "@/types";
+import { TCustomer } from "@/types/Customer";
 
 //tanstack
 import * as React from "react";

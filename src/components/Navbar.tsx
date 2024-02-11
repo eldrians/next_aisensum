@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { MaxWidthWrapper, NavItems } from "@/components";
-import { Icons } from "./Icons";
-import { buttonVariants } from "./ui/button";
+import { MaxWidthWrapper } from "@/components";
 
 const Navbar = () => {
   const user = null;
@@ -18,9 +16,7 @@ const Navbar = () => {
                   {/* <Icons.logo className="h-10 w-10" /> */}
                 </Link>
               </div>
-              <div className="block z-50 lg:ml-8 lg:self-stretch">
-                <NavItems />
-              </div>
+              <div className="block z-50 lg:ml-8 lg:self-stretch"></div>
             </div>
           </div>
         </MaxWidthWrapper>
