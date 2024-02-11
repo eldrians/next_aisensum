@@ -1,8 +1,7 @@
 import { cn } from "@/libs/utils";
 import { ReactNode } from "react";
 
-// this file is created to make entire layout looks Good
-const MaxWidthWrapper = ({
+const BaseLayout = ({
   className,
   children,
 }: {
@@ -18,4 +17,4 @@ const MaxWidthWrapper = ({
   );
 };
 
-export default MaxWidthWrapper;
+export default BaseLayout;

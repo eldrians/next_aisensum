@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MaxWidthWrapper } from "@/components";
+import { BaseLayout } from "@/components";
 
 const Navbar = () => {
   const user = null;
@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
       <header className="relative bg-white">
-        <MaxWidthWrapper>
+        <BaseLayout>
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center justify-between">
               <div className="ml-4 flex lg:ml-0">
@@ -19,7 +19,7 @@ const Navbar = () => {
               <div className="block z-50 lg:ml-8 lg:self-stretch"></div>
             </div>
           </div>
-        </MaxWidthWrapper>
+        </BaseLayout>
       </header>
     </div>
   );
