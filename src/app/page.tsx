@@ -3,7 +3,7 @@ import { AddCustomer, DataCustomer, Hero } from "@/app/(components)";
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <div className="w-full">
       <MaxWidthWrapper>
         <Hero />
       </MaxWidthWrapper>
@@ -17,6 +17,6 @@ export default function Home() {
           </div>
         </MaxWidthWrapper>
       </section>
-    </main>
+    </div>
   );
 }
