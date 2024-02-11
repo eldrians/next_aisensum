@@ -1,12 +1,11 @@
 import { MaxWidthWrapper } from "@/components";
 import { AddCustomer, DataCustomer, Hero } from "@/app/(components)";
+import { HeroSection } from "@/modules/home-page";
 
 export default function Home() {
   return (
     <div className="w-full">
-      <MaxWidthWrapper>
-        <Hero />
-      </MaxWidthWrapper>
+      <HeroSection />
       <section>
         <MaxWidthWrapper>
           <div className="flex flex-row justify-center items-start gap-4 py-4 lg:py-6">
