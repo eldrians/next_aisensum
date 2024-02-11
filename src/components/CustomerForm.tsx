@@ -24,9 +24,16 @@ import {
 } from "@/components/ui/select";
 import { COLOR_ITEMS } from "@/constants";
 import { cn } from "@/lib/utils";
+import { api } from "@/lib/api";
+// import { usePostCustomer } from "@/hooks/landing-page/hook";
 
 //tanstack
-import { useQuery, useIsFetching } from "@tanstack/react-query";
+import {
+  useQuery,
+  useIsFetching,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -48,11 +55,48 @@ const CustomerForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  // const { mutate } = usePostCustomer();
 
-  const colorTemp = "#FF0";
+  const mutation = useMutation({
+    mutationFn: async (data: any) => {
+      console.log("Customer Form:", data);
+      const formData = new FormData();
+      for (const key in data) {
+        formData.append(key, data[key]);
+      }
+      return await api.post("customer", formData);
+    },
+  });
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: addCustomerMutation } = useMutation({
+    mutationFn: async (data: any): Promise<any> => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const newCustomer = {
+        name: data.name,
+        username_ig: data.username_ig,
+        fav_color: data.fav_color,
+      };
+
+      api.post("customer", newCustomer);
+      return newCustomer;
+    },
+  });
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    // await addCustomerMutation({ data });
+    mutation.mutate(data, {
+      onSuccess: () => {
+        console.log("Added CustomerForm");
+        // form.reset();
+        // form.setValue("name", "");
+        // form.setValue("username_ig", "");
+        // form.setValue("fav_color", "");
+      },
+      onError: (error) => {
+        console.log("Error CustomerForm");
+      },
+    });
+  }
 
   return (
     <Form {...form}>

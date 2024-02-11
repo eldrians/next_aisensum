@@ -1,5 +1,9 @@
 "use client";
 
+//types
+import { TCustomer } from "@/types";
+
+//tanstack
 import * as React from "react";
 import { useState } from "react";
 import {
@@ -18,7 +22,6 @@ import {
   ArrowUpDown,
   ChevronDown,
   MoreHorizontal,
-  Search,
   Settings2,
 } from "lucide-react";
 
@@ -41,9 +44,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "./ui/badge";
 
-const data: Customer[] = [
+const data: TCustomer[] = [
   {
     id: "m5gr84i9",
     name: "Axel Eldrian Hadiwibowo",
@@ -76,14 +78,7 @@ const data: Customer[] = [
   },
 ];
 
-export type Customer = {
-  id: string;
-  name: string;
-  username_ig: string;
-  fav_color: string;
-};
-
-export const columns: ColumnDef<Customer>[] = [
+export const columns: ColumnDef<TCustomer>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -129,7 +124,7 @@ export const columns: ColumnDef<Customer>[] = [
       <div className="capitalize flex flex-row gap-1 items-center">
         <div
           style={{ backgroundColor: row.getValue("fav_color") }}
-          className="h-3 w-3 rounded-full"
+          className="h-3 w-3 rounded-full border border-slate-400"
         />
         <div className="lowercase text-xs">{row.getValue("fav_color")}</div>
       </div>
@@ -164,7 +159,25 @@ const DataTable = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-
+  // const { data, isLoading, isError } = useQuery<any>({
+  //   queryKey: ["customer"],
+  //   queryFn: () =>
+  //     fetch("http://127.0.0.1:5000/customer").then((res) => res.json()),
+  // });
+  // if (isLoading) {
+  //   return (
+  //     <main className="mt-4 flex min-h-screen flex-col items-center">
+  //       It Is Loading ...
+  //     </main>
+  //   );
+  // }
+  // if (isError) {
+  //   return (
+  //     <main className="mt-4 flex min-h-screen flex-col items-center">
+  //       It Is Error ...
+  //     </main>
+  //   );
+  // }
   const table = useReactTable({
     data,
     columns,
