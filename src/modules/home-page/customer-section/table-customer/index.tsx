@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 //components
 import { TableComponent } from "@/components";
@@ -24,19 +24,13 @@ import {
   ColumnFiltersState,
   SortingState,
   VisibilityState,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  ArrowUpDown,
-  ChevronDown,
-  MoreHorizontal,
-  Settings2,
-} from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -48,48 +42,40 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { useQuery } from "@tanstack/react-query";
 
-const data: TCustomer[] = [
-  {
-    id: "m5gr84i9",
-    name: "Axel Eldrian Hadiwibowo",
-    username_ig: "axeldrian_",
-    fav_color: "#FF0000",
-  },
-  {
-    id: "3u1reuv4",
-    name: "Aldrin Hadiwibowo",
-    username_ig: "aldrin45",
-    fav_color: "#FFF",
-  },
-  {
-    id: "derv1ws0",
-    name: "Ella Ismalina",
-    username_ig: "Monserrat44",
-    fav_color: "#000",
-  },
-  {
-    id: "5kma53ae",
-    name: "Elon Musk",
-    username_ig: "Silas22",
-    fav_color: "#FF7F00",
-  },
-  {
-    id: "bhqecj4p",
-    name: "Xi Jinping XX",
-    username_ig: "carmella",
-    fav_color: "#00FF00",
-  },
-];
+// const data: TCustomer[] = [
+//   {
+//     id: "m5gr84i9",
+//     name: "Axel Eldrian Hadiwibowo",
+//     username_ig: "axeldrian_",
+//     fav_color: "#FF0000",
+//   },
+//   {
+//     id: "3u1reuv4",
+//     name: "Aldrin Hadiwibowo",
+//     username_ig: "aldrin45",
+//     fav_color: "#FFF",
+//   },
+//   {
+//     id: "derv1ws0",
+//     name: "Ella Ismalina",
+//     username_ig: "Monserrat44",
+//     fav_color: "#000",
+//   },
+//   {
+//     id: "5kma53ae",
+//     name: "Elon Musk",
+//     username_ig: "Silas22",
+//     fav_color: "#FF7F00",
+//   },
+//   {
+//     id: "bhqecj4p",
+//     name: "Xi Jinping XX",
+//     username_ig: "carmella",
+//     fav_color: "#00FF00",
+//   },
+// ];
 
 export const columns: ColumnDef<TCustomer>[] = [
   {
@@ -166,30 +152,32 @@ export const columns: ColumnDef<TCustomer>[] = [
     },
   },
 ];
+
 const TableCustomerSection = () => {
+  const [data, setData] = useState<TCustomer[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  // const { data, isLoading, isError } = useQuery<any>({
-  //   queryKey: ["customer"],
-  //   queryFn: () =>
-  //     fetch("http://127.0.0.1:5000/customer").then((res) => res.json()),
-  // });
-  // if (isLoading) {
-  //   return (
-  //     <main className="mt-4 flex min-h-screen flex-col items-center">
-  //       It Is Loading ...
-  //     </main>
-  //   );
-  // }
-  // if (isError) {
-  //   return (
-  //     <main className="mt-4 flex min-h-screen flex-col items-center">
-  //       It Is Error ...
-  //     </main>
-  //   );
-  // }
+  const {
+    data: queryData,
+    isLoading,
+    isError,
+  } = useQuery<TCustomer[]>({
+    queryKey: ["customer"],
+    queryFn: () =>
+      fetch("http://127.0.0.1:5000/customer")
+        .then((res) => res.json())
+        .then((data) => data.payload || []),
+  });
+
+  useEffect(() => {
+    if (queryData) {
+      console.log(queryData);
+      setData(queryData);
+    }
+  }, [queryData]);
+
   const table = useReactTable({
     data,
     columns,
@@ -208,6 +196,22 @@ const TableCustomerSection = () => {
       rowSelection,
     },
   });
+
+  if (isLoading) {
+    return (
+      <main className="mt-4 flex min-h-screen flex-col items-center">
+        It Is Loading ...
+      </main>
+    );
+  }
+
+  if (isError) {
+    return (
+      <main className="mt-4 flex min-h-screen flex-col items-center">
+        It Is Error ...
+      </main>
+    );
+  }
   return (
     <Card className="w-full lg:w-4/6">
       <CardHeader className="flex flex-row justify-between">
@@ -218,7 +222,11 @@ const TableCustomerSection = () => {
         <AddCustomerSection type="mobile" />
       </CardHeader>
       <CardContent>
-        <TableComponent columns={columns} data={table} searchColumnName="name"/>
+        <TableComponent
+          columns={columns}
+          data={table}
+          searchColumnName="name"
+        />
       </CardContent>
     </Card>
   );
