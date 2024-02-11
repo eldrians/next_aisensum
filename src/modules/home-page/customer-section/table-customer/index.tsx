@@ -43,39 +43,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useQuery } from "@tanstack/react-query";
-
-// const data: TCustomer[] = [
-//   {
-//     id: "m5gr84i9",
-//     name: "Axel Eldrian Hadiwibowo",
-//     username_ig: "axeldrian_",
-//     fav_color: "#FF0000",
-//   },
-//   {
-//     id: "3u1reuv4",
-//     name: "Aldrin Hadiwibowo",
-//     username_ig: "aldrin45",
-//     fav_color: "#FFF",
-//   },
-//   {
-//     id: "derv1ws0",
-//     name: "Ella Ismalina",
-//     username_ig: "Monserrat44",
-//     fav_color: "#000",
-//   },
-//   {
-//     id: "5kma53ae",
-//     name: "Elon Musk",
-//     username_ig: "Silas22",
-//     fav_color: "#FF7F00",
-//   },
-//   {
-//     id: "bhqecj4p",
-//     name: "Xi Jinping XX",
-//     username_ig: "carmella",
-//     fav_color: "#00FF00",
-//   },
-// ];
+import { fetchCustomers } from "@/app/api/customer";
 
 export const columns: ColumnDef<TCustomer>[] = [
   {
@@ -159,19 +127,29 @@ const TableCustomerSection = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  // const {
+  //   data: queryData,
+  //   isLoading,
+  //   isError,
+  // } = useQuery<TCustomer[]>({
+  //   queryKey: ["customer"],
+  //   queryFn: () =>
+  //     fetch("http://127.0.0.1:5000/customer")
+  //       .then((res) => res.json())
+  //       .then((data) => data.payload || []),
+  // });
+
   const {
     data: queryData,
     isLoading,
     isError,
   } = useQuery<TCustomer[]>({
     queryKey: ["customer"],
-    queryFn: () =>
-      fetch("http://127.0.0.1:5000/customer")
-        .then((res) => res.json())
-        .then((data) => data.payload || []),
+    queryFn: fetchCustomers,
   });
 
   useEffect(() => {
+    console.log("queryData changed:", queryData);
     if (queryData) {
       console.log(queryData);
       setData(queryData);

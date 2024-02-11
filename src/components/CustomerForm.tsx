@@ -34,6 +34,7 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
+import { createCustomer } from "@/app/api/customer";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -57,6 +58,31 @@ const CustomerForm = () => {
 
   // const { mutate } = usePostCustomer();
 
+  const queryClient = useQueryClient();
+
+  // const { mutateAsync: addCustomerMutation } = useMutation({
+  //   mutationFn: async (data: any): Promise<any> => {
+  //     await new Promise((resolve) => setTimeout(resolve, 1000));
+  //     const newCustomer = {
+  //       name: data.name,
+  //       username_ig: data.username_ig,
+  //       fav_color: data.fav_color,
+  //     };
+
+  //     api.post("customer", newCustomer);
+  //     return newCustomer;
+  //   },
+  //   onSuccess: ()=> {
+  //     queryClient.invalidateQueries({queryKey:["customer"]})
+  //   }
+  // });
+
+  const addCustomerMutation = useMutation({
+    mutationFn: createCustomer,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["customer"] });
+    },
+  });
   const mutation = useMutation({
     mutationFn: async (data: any) => {
       console.log("Customer Form:", data);
@@ -66,36 +92,25 @@ const CustomerForm = () => {
       }
       return await api.post("customer", formData);
     },
-  });
-  const queryClient = useQueryClient();
-
-  const { mutateAsync: addCustomerMutation } = useMutation({
-    mutationFn: async (data: any): Promise<any> => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const newCustomer = {
-        name: data.name,
-        username_ig: data.username_ig,
-        fav_color: data.fav_color,
-      };
-
-      api.post("customer", newCustomer);
-      return newCustomer;
+    onSuccess: () => {
+      console.log("Berhasil anjay");
+      queryClient.invalidateQueries({ queryKey: ["customer"] });
     },
   });
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    // await addCustomerMutation({ data });
-    mutation.mutate(data, {
-      onSuccess: () => {
-        console.log("Added CustomerForm");
-        // form.reset();
-        // form.setValue("name", "");
-        // form.setValue("username_ig", "");
-        // form.setValue("fav_color", "");
-      },
-      onError: (error) => {
-        console.log("Error CustomerForm");
-      },
-    });
+    // mutation.mutate(data, {
+    //   onSuccess: () => {
+    //     console.log("Added CustomerForm");
+    //     // form.reset();
+    //     // form.setValue("name", "");
+    //     // form.setValue("username_ig", "");
+    //     // form.setValue("fav_color", "");
+    //   },
+    //   onError: (error) => {
+    //     console.log("Error CustomerForm");
+    //   },
+    // });
+    mutation.mutate(data);
   }
 
   return (
