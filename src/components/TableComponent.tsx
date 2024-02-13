@@ -39,7 +39,10 @@ const TableComponent = ({
                 asChild
                 className="w-full order-1 lg:mb-0 lg:order-2"
               >
-                <UI.button.Button variant="outline">
+                <UI.button.Button
+                  variant="outline"
+                  aria-label="custom customer"
+                >
                   <Settings2 className="h-5 w-5 "></Settings2>
                 </UI.button.Button>
               </UI.dropdown.DropdownMenuTrigger>
@@ -70,7 +73,7 @@ const TableComponent = ({
             asChild
             className="hidden lg:flex w-full lg:w-fit lg:ml-3 order-1 mb-4 lg:mb-0 lg:order-2"
           >
-            <UI.button.Button variant="outline">
+            <UI.button.Button variant="outline" aria-label="custom customer">
               Columns <ChevronDown className="ml-2 h-4 w-4" />
             </UI.button.Button>
           </UI.dropdown.DropdownMenuTrigger>
@@ -155,6 +158,7 @@ const TableComponent = ({
             size="sm"
             onClick={() => data.previousPage()}
             disabled={!data.getCanPreviousPage()}
+            aria-label="previous"
           >
             Previous
           </UI.button.Button>
@@ -163,6 +167,7 @@ const TableComponent = ({
             size="sm"
             onClick={() => data.nextPage()}
             disabled={!data.getCanNextPage()}
+            aria-label="next"
           >
             Next
           </UI.button.Button>

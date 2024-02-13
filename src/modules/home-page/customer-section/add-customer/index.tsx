@@ -25,7 +25,12 @@ const AddCustomerSection = ({
       return (
         <UI.drawer.Drawer>
           <UI.drawer.DrawerTrigger asChild>
-            <UI.button.Button variant="outline" size="xs" className="lg:hidden">
+            <UI.button.Button
+              variant="outline"
+              size="xs"
+              className="lg:hidden"
+              aria-label="add customer"
+            >
               <Plus className="h-4 w-4 md:mr-2" />
               <span className="hidden md:block">Add</span>
             </UI.button.Button>
@@ -46,7 +51,9 @@ const AddCustomerSection = ({
             </div>
             <UI.drawer.DrawerFooter className="pt-0">
               <UI.drawer.DrawerClose asChild>
-                <UI.button.Button variant="outline">Cancel</UI.button.Button>
+                <UI.button.Button variant="outline" aria-label="cancel">
+                  Cancel
+                </UI.button.Button>
               </UI.drawer.DrawerClose>
             </UI.drawer.DrawerFooter>
           </UI.drawer.DrawerContent>

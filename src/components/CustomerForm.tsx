@@ -174,7 +174,11 @@ const CustomerForm = ({ dataCustomer }: { dataCustomer?: any }) => {
                 </UI.form.FormItem>
               )}
             />
-            <UI.button.Button type="submit" className="w-full">
+            <UI.button.Button
+              type="submit"
+              className="w-full"
+              aria-label="submit customer"
+            >
               {dataCustomer ? (
                 <>
                   <Pen className="h-4 w-4 md:mr-2" />
