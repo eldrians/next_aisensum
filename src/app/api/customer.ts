@@ -7,7 +7,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-export const getCustomers = (): UseQueryResult => {
+export const useGetCustomers = (): UseQueryResult => {
   return useQuery<TCustomer[]>({
     queryKey: ["customer"],
     queryFn: async () => {
@@ -17,7 +17,7 @@ export const getCustomers = (): UseQueryResult => {
   });
 };
 
-export const addCustomer = (): UseMutationResult => {
+export const useAddCustomer = (): UseMutationResult => {
   return useMutation({
     mutationFn: async (data: any) => {
       const formData = new FormData();
@@ -29,7 +29,7 @@ export const addCustomer = (): UseMutationResult => {
   });
 };
 
-export const updateCustomer = () => {
+export const useUpdateCustomer = () => {
   return useMutation({
     mutationFn: async ({
       data,
@@ -48,7 +48,7 @@ export const updateCustomer = () => {
   });
 };
 
-export const deleteCustomer = () => {
+export const useDeleteCustomer = () => {
   return useMutation({
     mutationFn: async (customerId: any) => {
       return await api.delete(`/customer/${customerId}`);

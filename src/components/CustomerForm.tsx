@@ -12,7 +12,7 @@ import * as UI from "@/components/ui";
 import { COLOR_ITEMS } from "@/constants";
 
 //api
-import { addCustomer, updateCustomer } from "@/app/api/customer";
+import { useAddCustomer, useUpdateCustomer } from "@/app/api/customer";
 
 // schema
 import { CustomerSchema } from "@/libs/schema/customer";
@@ -20,8 +20,8 @@ import { Pen, Plus } from "lucide-react";
 import { useEffect } from "react";
 
 const CustomerForm = ({ dataCustomer }: { dataCustomer?: any }) => {
-  const addCustomerMutation = addCustomer();
-  const updateCustomerMutation = updateCustomer();
+  const addCustomerMutation = useAddCustomer();
+  const updateCustomerMutation = useUpdateCustomer();
   const queryClient = useQueryClient();
   const { toast } = UI.useToast.useToast();
 
@@ -123,20 +123,18 @@ const CustomerForm = ({ dataCustomer }: { dataCustomer?: any }) => {
                       {dataCustomer ? (
                         <div className="text-xs font-thin flex flex-row gap-1 items-center">
                           default:
-                          {COLOR_ITEMS.map((color) =>
-                            dataCustomer?.fav_color === color.hex ? (
-                              <>
-                                <div
-                                  key={color.hex}
-                                  className="w-2 h-2 rounded-full border border-slate-400"
-                                  style={{
-                                    backgroundColor: dataCustomer?.fav_color,
-                                  }}
-                                />
-                                ({color.color})
-                              </>
-                            ) : null
-                          )}
+                          {COLOR_ITEMS.map((color) => (
+                            <div key={color.hex}>
+                              dataCustomer?.fav_color === color.hex ? (
+                              <div
+                                className="w-2 h-2 rounded-full border border-slate-400"
+                                style={{
+                                  backgroundColor: dataCustomer?.fav_color,
+                                }}
+                              />
+                              ({color.color}) ) : null
+                            </div>
+                          ))}
                         </div>
                       ) : null}
                     </div>

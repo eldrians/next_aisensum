@@ -15,7 +15,7 @@ import {
 import { ArrowUpDown, Pen, Trash2 } from "lucide-react";
 
 //api
-import { deleteCustomer, getCustomers } from "@/app/api/customer";
+import { useDeleteCustomer, useGetCustomers } from "@/app/api/customer";
 
 //components
 import { Alert, CustomerForm, TableComponent } from "@/components";
@@ -35,10 +35,10 @@ const TableCustomerSection = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  const deleteCustomerMutation = deleteCustomer();
+  const deleteCustomerMutation = useDeleteCustomer();
   const queryClient = useQueryClient();
 
-  const { data: res, isLoading, isError }: any = getCustomers();
+  const { data: res, isLoading, isError }: any = useGetCustomers();
 
   useEffect(() => {
     if (res) {
@@ -102,7 +102,9 @@ const TableCustomerSection = () => {
           />
           {COLOR_ITEMS.map((color) =>
             row.getValue("fav_color") === color.hex ? (
-              <span className="text-xs">{color.color}</span>
+              <span key={color.hex} className="text-xs">
+                {color.color}
+              </span>
             ) : null
           )}
         </div>
