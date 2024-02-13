@@ -10,7 +10,7 @@ const BaseLayout = ({
 }) => {
   return (
     <div
-      className={cn("mx-auto w-full max-w-screen-xl px-4 lg:px-32", className)}
+      className={cn("mx-auto w-full max-w-screen-xl px-6 md:px-20 lg:px-32", className)}
     >
       {children}
     </div>

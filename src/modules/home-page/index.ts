@@ -1,4 +1,4 @@
-import HeroSection from "./hero-section";
+import HeaderSection from "./header-section";
 import CustomerSection from "./customer-section";
 
-export { HeroSection, CustomerSection };
+export { HeaderSection, CustomerSection };
