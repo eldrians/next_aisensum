@@ -10,8 +10,10 @@ const HeaderSection = () => {
         <Link href="/" className=" flex flex-col gap-1">
           <Image
             src="/aisensum-logo.png"
-            height={30}
-            width={150}
+            width="0"
+            height="0"
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
             alt="aisensum"
           />
           <span className="text-white/80 text-xs block lg:hidden font-thin">
