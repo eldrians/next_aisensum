@@ -12,7 +12,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal, Pen, Trash2 } from "lucide-react";
+import { ArrowUpDown, Pen, Trash2 } from "lucide-react";
 
 //api
 import { deleteCustomer, getCustomers } from "@/app/api/customer";
@@ -112,7 +112,7 @@ const TableCustomerSection = () => {
       id: "actions",
       cell: ({ row }) => {
         return (
-          <div className="flex flex-row gap-4 justify-center items-center">
+          <div className="flex flex-row gap-4 items-center justify-center">
             <Alert
               variant="form"
               btnTitle={

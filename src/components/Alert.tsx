@@ -25,7 +25,7 @@ const Alert = ({
           <UI.alertDialog.AlertDialogTitle>
             {title}
           </UI.alertDialog.AlertDialogTitle>
-          <UI.alertDialog.AlertDialogDescription>
+          <UI.alertDialog.AlertDialogDescription className="m-0">
             {description}
           </UI.alertDialog.AlertDialogDescription>
         </UI.alertDialog.AlertDialogHeader>
@@ -39,7 +39,7 @@ const Alert = ({
             </UI.alertDialog.AlertDialogAction>
           </UI.alertDialog.AlertDialogFooter>
         ) : (
-          <UI.alertDialog.AlertDialogCancel>
+          <UI.alertDialog.AlertDialogCancel className="m-0 mx-4 lg:mx-0">
             Cancel
           </UI.alertDialog.AlertDialogCancel>
         )}

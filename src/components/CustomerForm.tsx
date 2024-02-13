@@ -81,7 +81,7 @@ const CustomerForm = ({ dataCustomer }: { dataCustomer?: any }) => {
               name="name"
               render={({ field }) => (
                 <UI.form.FormItem>
-                  <UI.form.FormLabel>Name</UI.form.FormLabel>
+                  <UI.form.FormLabel className="flex">Name</UI.form.FormLabel>
                   <UI.form.FormControl>
                     <UI.input.Input
                       placeholder="name..."
@@ -98,7 +98,9 @@ const CustomerForm = ({ dataCustomer }: { dataCustomer?: any }) => {
               name="username_ig"
               render={({ field }) => (
                 <UI.form.FormItem>
-                  <UI.form.FormLabel>Username IG</UI.form.FormLabel>
+                  <UI.form.FormLabel className="flex">
+                    Username IG
+                  </UI.form.FormLabel>
                   <UI.form.FormControl>
                     <UI.input.Input
                       placeholder="username ig..."
