@@ -118,6 +118,7 @@ const TableCustomerSection = () => {
     if (res) {
       setData(res);
     }
+    table.setPageSize(5);
   }, [res]);
 
   const table = useReactTable({

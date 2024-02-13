@@ -42,7 +42,7 @@ export default function RootLayout({
         <Providers>
           <div className="relative flex flex-col min-h-screen">
             <Navbar />
-            <div className="flex-grow flex-1">{children}</div>
+            <div className="flex-grow flex-1 bg-slate-100">{children}</div>
           </div>
           <UI.Toaster />
         </Providers>
