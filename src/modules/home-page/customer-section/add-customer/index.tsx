@@ -30,26 +30,15 @@ const AddCustomerSection = ({
   const FormType = () => {
     if (type == "desktop") {
       return (
-        <div>
-          <h1>Add Customer</h1>
+        <div className="flex flex-col gap-4 justify-center items-start w-full h-full">
           <CustomerForm />
         </div>
-        // <Card className="w-full">
-        //   <CardHeader>
-        //     <CardTitle>Add Customers | desktop</CardTitle>
-        //   </CardHeader>
-        //   <CardContent>
-        //     <CustomerForm />
-        //   </CardContent>
-        // </Card>
       );
     } else if (type == "mobile") {
       return (
         <Drawer>
           <DrawerTrigger asChild>
-            <Button 
-            variant="outline"
-            size="xs" className="lg:hidden">
+            <Button variant="outline" size="xs" className="lg:hidden">
               <Plus className="h-4 w-4 md:mr-2" />
               <span className="hidden md:block">Add</span>
             </Button>

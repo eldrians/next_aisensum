@@ -9,6 +9,7 @@ import * as card from "@/components/ui/card";
 import * as dropdown from "@/components/ui/dropdown-menu";
 import * as skeleton from "@/components/ui/skeleton";
 import * as table from "@/components/ui/table";
+import * as alertDialog from "@/components/ui/alert-dialog";
 
 export {
   button,
@@ -20,5 +21,6 @@ export {
   card,
   dropdown,
   skeleton,
-  table
+  table,
+  alertDialog,
 };

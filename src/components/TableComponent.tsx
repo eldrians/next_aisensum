@@ -17,7 +17,7 @@ const TableComponent = ({
   searchColumnName?: string;
 }) => {
   return (
-    <div className="w-full">
+    <div className="w-full min-h-[520px]">
       <div className="flex flex-col lg:flex-row lg:justify-between items-center py-4">
         <div className="w-full flex flex-row order-2 lg:order-1 gap-2">
           <UI.input.Input
@@ -31,7 +31,7 @@ const TableComponent = ({
                 .getColumn(searchColumnName)
                 ?.setFilterValue(event.target.value)
             }
-            className="w-5/6 lg:w-full"
+            className="w-5/6 lg:w-full "
           />
           <div className="w-1/6 flex justify-center items-center lg:hidden">
             <UI.dropdown.DropdownMenu>
