@@ -123,18 +123,20 @@ const CustomerForm = ({ dataCustomer }: { dataCustomer?: any }) => {
                       {dataCustomer ? (
                         <div className="text-xs font-thin flex flex-row gap-1 items-center">
                           default:
-                          {COLOR_ITEMS.map((color) => (
-                            <div key={color.hex}>
-                              dataCustomer?.fav_color === color.hex ? (
-                              <div
-                                className="w-2 h-2 rounded-full border border-slate-400"
-                                style={{
-                                  backgroundColor: dataCustomer?.fav_color,
-                                }}
-                              />
-                              ({color.color}) ) : null
-                            </div>
-                          ))}
+                          {COLOR_ITEMS.map((color) =>
+                            dataCustomer?.fav_color === color.hex ? (
+                              <>
+                                <div
+                                  key={color.hex}
+                                  className="w-2 h-2 rounded-full border border-slate-400"
+                                  style={{
+                                    backgroundColor: dataCustomer?.fav_color,
+                                  }}
+                                />
+                                ({color.color})
+                              </>
+                            ) : null
+                          )}
                         </div>
                       ) : null}
                     </div>
