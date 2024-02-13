@@ -26,7 +26,7 @@ const CustomerSection = () => {
         <UI.card.Card className="w-1/3 hidden lg:flex lg:flex-col lg:gap-2 justify-center h-fit pt-6 pb-10 items-center">
           <UI.card.CardContent className="pb-0 w-full flex flex-col">
             <div className="flex flex-col mb-4 justify-center items-start">
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-slate-800">
                 Adding new customer here!
               </p>
             </div>
