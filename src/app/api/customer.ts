@@ -29,14 +29,21 @@ export const addCustomer = (): UseMutationResult => {
   });
 };
 
-export const updateCustomer = (): UseMutationResult => {
+export const updateCustomer = () => {
   return useMutation({
-    mutationFn: async (data: any) => {
+    mutationFn: async ({
+      data,
+      customerId,
+    }: {
+      data: any;
+      customerId: any;
+    }) => {
+      console.log(data);
       const formData = new FormData();
       for (const key in data) {
         formData.append(key, data[key]);
       }
-      return await api.put(`/customer/patch/${data.id}`, formData);
+      return await api.patch(`/customer/patch/${customerId}`, formData);
     },
   });
 };

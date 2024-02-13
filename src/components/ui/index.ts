@@ -10,6 +10,7 @@ import * as dropdown from "@/components/ui/dropdown-menu";
 import * as skeleton from "@/components/ui/skeleton";
 import * as table from "@/components/ui/table";
 import * as alertDialog from "@/components/ui/alert-dialog";
+import * as drawer from "@/components/ui/drawer";
 
 export {
   button,
@@ -23,4 +24,5 @@ export {
   skeleton,
   table,
   alertDialog,
+  drawer,
 };

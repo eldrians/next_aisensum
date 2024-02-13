@@ -1,15 +1,17 @@
 import * as UI from "@/components/ui";
 
 const Alert = ({
+  variant = "default",
   btnTitle = "Show Dialog",
   title = "",
   description = "",
   button = "Continue",
   onClickHandle,
 }: {
+  variant?: "default" | "form";
   btnTitle?: any;
   title?: string;
-  description?: string;
+  description?: any;
   button?: string;
   onClickHandle?: () => void;
 }) => {
@@ -27,14 +29,20 @@ const Alert = ({
             {description}
           </UI.alertDialog.AlertDialogDescription>
         </UI.alertDialog.AlertDialogHeader>
-        <UI.alertDialog.AlertDialogFooter>
+        {variant == "default" ? (
+          <UI.alertDialog.AlertDialogFooter>
+            <UI.alertDialog.AlertDialogCancel>
+              Cancel
+            </UI.alertDialog.AlertDialogCancel>
+            <UI.alertDialog.AlertDialogAction onClick={onClickHandle}>
+              {button}
+            </UI.alertDialog.AlertDialogAction>
+          </UI.alertDialog.AlertDialogFooter>
+        ) : (
           <UI.alertDialog.AlertDialogCancel>
             Cancel
           </UI.alertDialog.AlertDialogCancel>
-          <UI.alertDialog.AlertDialogAction onClick={onClickHandle}>
-            {button}
-          </UI.alertDialog.AlertDialogAction>
-        </UI.alertDialog.AlertDialogFooter>
+        )}
       </UI.alertDialog.AlertDialogContent>
     </UI.alertDialog.AlertDialog>
   );

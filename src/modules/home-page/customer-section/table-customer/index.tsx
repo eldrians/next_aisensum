@@ -18,7 +18,7 @@ import { ArrowUpDown, MoreHorizontal, Pen, Trash2 } from "lucide-react";
 import { deleteCustomer, getCustomers } from "@/app/api/customer";
 
 //components
-import { Alert, TableComponent } from "@/components";
+import { Alert, CustomerForm, TableComponent } from "@/components";
 import TableSkeleton from "./table-skeleton";
 
 //shadcn
@@ -27,6 +27,7 @@ import * as UI from "@/components/ui";
 //types
 import { TCustomer } from "@/types/Customer";
 import { useQueryClient } from "@tanstack/react-query";
+import { COLOR_ITEMS } from "@/constants";
 
 const TableCustomerSection = () => {
   const [data, setData] = useState<TCustomer[]>([]);
@@ -99,7 +100,11 @@ const TableCustomerSection = () => {
             style={{ backgroundColor: row.getValue("fav_color") }}
             className="h-3 w-3 rounded-full border border-slate-400"
           />
-          <div className="lowercase text-xs">{row.getValue("fav_color")}</div>
+          {COLOR_ITEMS.map((color) =>
+            row.getValue("fav_color") === color.hex ? (
+              <span className="text-xs">{color.color}</span>
+            ) : null
+          )}
         </div>
       ),
     },
@@ -109,9 +114,12 @@ const TableCustomerSection = () => {
         return (
           <div className="flex flex-row gap-4 justify-center items-center">
             <Alert
+              variant="form"
               btnTitle={
                 <Pen className="w-4 h-4 text-zinc-600 cursor-pointer" />
               }
+              title={`Update "${row.getValue("name")}"`}
+              description={<CustomerForm dataCustomer={row.original} />}
             ></Alert>
             <Alert
               btnTitle={
@@ -120,6 +128,7 @@ const TableCustomerSection = () => {
               title={`Are you sure delete "${row.getValue("name")}"?`}
               description="This action cannot be undone. This will permanently delete your customer and remove your data from our database."
               onClickHandle={() => handleDelete(row.original.id)}
+              button="Delete"
             ></Alert>
           </div>
         );

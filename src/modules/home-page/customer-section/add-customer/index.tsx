@@ -2,22 +2,9 @@
 
 import React from "react";
 
-//component
+//components
 import { CustomerForm } from "@/components";
-
-//shadcnui
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
+import * as UI from "@/components/ui";
 
 //icon
 import { Plus } from "lucide-react";
@@ -36,30 +23,34 @@ const AddCustomerSection = ({
       );
     } else if (type == "mobile") {
       return (
-        <Drawer>
-          <DrawerTrigger asChild>
-            <Button variant="outline" size="xs" className="lg:hidden">
+        <UI.drawer.Drawer>
+          <UI.drawer.DrawerTrigger asChild>
+            <UI.button.Button variant="outline" size="xs" className="lg:hidden">
               <Plus className="h-4 w-4 md:mr-2" />
               <span className="hidden md:block">Add</span>
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent>
+            </UI.button.Button>
+          </UI.drawer.DrawerTrigger>
+          <UI.drawer.DrawerContent>
             <div className="mx-auto w-full max-w-xl">
-              <DrawerHeader>
-                <DrawerTitle>Add Customer</DrawerTitle>
-                <DrawerDescription>add customer here!</DrawerDescription>
-              </DrawerHeader>
+              <UI.drawer.DrawerHeader>
+                <UI.drawer.DrawerTitle className="text-xl">
+                  Add Customer
+                </UI.drawer.DrawerTitle>
+                <UI.drawer.DrawerDescription>
+                  adding new customer here!
+                </UI.drawer.DrawerDescription>
+              </UI.drawer.DrawerHeader>
               <div>
                 <CustomerForm />
               </div>
             </div>
-            <DrawerFooter className="pt-0">
-              <DrawerClose asChild>
-                <Button variant="outline">Cancel</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
+            <UI.drawer.DrawerFooter className="pt-0">
+              <UI.drawer.DrawerClose asChild>
+                <UI.button.Button variant="outline">Cancel</UI.button.Button>
+              </UI.drawer.DrawerClose>
+            </UI.drawer.DrawerFooter>
+          </UI.drawer.DrawerContent>
+        </UI.drawer.Drawer>
       );
     }
   };

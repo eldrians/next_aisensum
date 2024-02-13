@@ -17,7 +17,7 @@ const TableComponent = ({
   searchColumnName?: string;
 }) => {
   return (
-    <div className="w-full min-h-[520px]">
+    <div className="w-full min-h-[420px]">
       <div className="flex flex-col lg:flex-row lg:justify-between items-center py-4">
         <div className="w-full flex flex-row order-2 lg:order-1 gap-2">
           <UI.input.Input

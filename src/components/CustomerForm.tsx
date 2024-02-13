@@ -12,17 +12,26 @@ import * as UI from "@/components/ui";
 import { COLOR_ITEMS } from "@/constants";
 
 //api
-import { addCustomer } from "@/app/api/customer";
+import { addCustomer, updateCustomer } from "@/app/api/customer";
 
 // schema
 import { CustomerSchema } from "@/libs/schema/customer";
-import { Plus } from "lucide-react";
+import { Pen, Plus } from "lucide-react";
+import { useEffect } from "react";
 
-const CustomerForm = () => {
-  const { mutate } = addCustomer();
+const CustomerForm = ({ dataCustomer }: { dataCustomer?: any }) => {
   const addCustomerMutation = addCustomer();
+  const updateCustomerMutation = updateCustomer();
   const queryClient = useQueryClient();
   const { toast } = UI.useToast.useToast();
+
+  useEffect(() => {
+    if (dataCustomer) {
+      form.setValue("name", dataCustomer.name || "");
+      form.setValue("username_ig", dataCustomer.username_ig || "");
+      form.setValue("fav_color", dataCustomer.fav_color || "");
+    }
+  }, []);
 
   const form = useForm<z.infer<typeof CustomerSchema>>({
     resolver: zodResolver(CustomerSchema),
@@ -35,12 +44,20 @@ const CustomerForm = () => {
 
   const onSubmit = async (data: z.infer<typeof CustomerSchema>) => {
     try {
-      if (data.id) {
+      if (dataCustomer) {
+        await updateCustomerMutation.mutateAsync({
+          data: data,
+          customerId: dataCustomer["id"],
+        });
+        toast({
+          title: "Update Success",
+          description: "Customer Updated 😉",
+        });
       } else {
         await addCustomerMutation.mutateAsync(data);
         toast({
-          title: "Success",
-          description: "Add Customer 😉",
+          title: "Add Success",
+          description: "Customer Added 😉",
         });
       }
       queryClient.invalidateQueries({ queryKey: ["customer"] });
@@ -98,14 +115,41 @@ const CustomerForm = () => {
               name="fav_color"
               render={({ field }) => (
                 <UI.form.FormItem>
-                  <UI.form.FormLabel>Favourite Color</UI.form.FormLabel>
+                  <UI.form.FormLabel className="flex flex-row gap-1 items-center">
+                    <div>Favourite Color</div>
+                    <div>
+                      {dataCustomer ? (
+                        <div className="text-xs font-thin flex flex-row gap-1 items-center">
+                          default:
+                          {COLOR_ITEMS.map((color) =>
+                            dataCustomer?.fav_color === color.hex ? (
+                              <>
+                                <div
+                                  key={color.hex}
+                                  className="w-2 h-2 rounded-full border border-slate-400"
+                                  style={{
+                                    backgroundColor: dataCustomer?.fav_color,
+                                  }}
+                                />
+                                ({color.color})
+                              </>
+                            ) : null
+                          )}
+                        </div>
+                      ) : null}
+                    </div>
+                  </UI.form.FormLabel>
                   <UI.select.Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
+                    value={form.getValues("fav_color") || ""}
                   >
                     <UI.form.FormControl>
                       <UI.select.SelectTrigger>
-                        <UI.select.SelectValue placeholder="Select Color" />
+                        <UI.select.SelectValue
+                          placeholder="Select Color"
+                          defaultValue={form.getValues("fav_color")}
+                        />
                       </UI.select.SelectTrigger>
                     </UI.form.FormControl>
                     <UI.select.SelectContent position="popper">
@@ -129,8 +173,17 @@ const CustomerForm = () => {
               )}
             />
             <UI.button.Button type="submit" className="w-full">
-              <Plus className="h-4 w-4 md:mr-2" />
-              Add Customer
+              {dataCustomer ? (
+                <>
+                  <Pen className="h-4 w-4 md:mr-2" />
+                  Update Customer
+                </>
+              ) : (
+                <>
+                  <Plus className="h-4 w-4 md:mr-2" />
+                  Add Customer
+                </>
+              )}
             </UI.button.Button>
           </div>
         </form>
