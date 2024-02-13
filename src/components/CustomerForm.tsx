@@ -3,47 +3,27 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { COLOR_ITEMS } from "@/constants";
-import { api } from "@/libs/api";
-
-//tanstack
 import { useQueryClient } from "@tanstack/react-query";
+
+// shadcn
+import * as UI from "@/components/ui";
+
+// constants
+import { COLOR_ITEMS } from "@/constants";
 
 //api
 import { addCustomer } from "@/app/api/customer";
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "name must be at least 2 characters.",
-  }),
-  username_ig: z.string().min(2, {
-    message: "username must be at least 2 characters.",
-  }),
-  fav_color: z.string(),
-});
+// schema
+import { CustomerSchema } from "@/libs/schema/customer";
 
 const CustomerForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { mutate } = addCustomer();
+  const queryClient = useQueryClient();
+  const { toast } = UI.useToast.useToast();
+
+  const form = useForm<z.infer<typeof CustomerSchema>>({
+    resolver: zodResolver(CustomerSchema),
     defaultValues: {
       name: "",
       username_ig: "",
@@ -51,13 +31,13 @@ const CustomerForm = () => {
     },
   });
 
-  const queryClient = useQueryClient();
-
-  const { mutate } = addCustomer();
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = (data: z.infer<typeof CustomerSchema>) => {
     mutate(data, {
       onSuccess: () => {
-        console.log("Berhasil anjay");
+        toast({
+          title: "Success",
+          description: "Add Customer 😉",
+        });
         queryClient.invalidateQueries({ queryKey: ["customer"] });
         form.reset();
         form.setValue("name", "");
@@ -65,63 +45,71 @@ const CustomerForm = () => {
         form.setValue("fav_color", "");
       },
       onError: (error) => {
-        console.log(error.message);
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: error.message,
+        });
       },
     });
   };
 
   return (
-    <Form {...form}>
+    <UI.form.Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="p-4 lg:p-0 space-y-4 w-full">
-          <FormField
+          <UI.form.FormField
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="name..." {...field} className="w-full" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <UI.form.FormItem>
+                <UI.form.FormLabel>Name</UI.form.FormLabel>
+                <UI.form.FormControl>
+                  <UI.input.Input
+                    placeholder="name..."
+                    {...field}
+                    className="w-full"
+                  />
+                </UI.form.FormControl>
+                <UI.form.FormMessage />
+              </UI.form.FormItem>
             )}
           />
-          <FormField
+          <UI.form.FormField
             control={form.control}
             name="username_ig"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username IG</FormLabel>
-                <FormControl>
-                  <Input
+              <UI.form.FormItem>
+                <UI.form.FormLabel>Username IG</UI.form.FormLabel>
+                <UI.form.FormControl>
+                  <UI.input.Input
                     placeholder="username ig..."
                     {...field}
                     className="w-full"
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+                </UI.form.FormControl>
+                <UI.form.FormMessage />
+              </UI.form.FormItem>
             )}
           />
-          <FormField
+          <UI.form.FormField
             control={form.control}
             name="fav_color"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Favourite Color</FormLabel>
-                <Select
+              <UI.form.FormItem>
+                <UI.form.FormLabel>Favourite Color</UI.form.FormLabel>
+                <UI.select.Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select Color" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent position="popper">
+                  <UI.form.FormControl>
+                    <UI.select.SelectTrigger>
+                      <UI.select.SelectValue placeholder="Select Color" />
+                    </UI.select.SelectTrigger>
+                  </UI.form.FormControl>
+                  <UI.select.SelectContent position="popper">
                     {COLOR_ITEMS.map((color) => (
-                      <SelectItem value={color.hex} key={color.hex}>
+                      <UI.select.SelectItem value={color.hex} key={color.hex}>
                         <div className="flex flex-row gap-2 items-center">
                           <div
                             style={{ backgroundColor: color.hex }}
@@ -131,20 +119,20 @@ const CustomerForm = () => {
                             {color.color}
                           </div>
                         </div>
-                      </SelectItem>
+                      </UI.select.SelectItem>
                     ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
+                  </UI.select.SelectContent>
+                </UI.select.Select>
+                <UI.form.FormMessage />
+              </UI.form.FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
+          <UI.button.Button type="submit" className="w-full">
             Submit
-          </Button>
+          </UI.button.Button>
         </div>
       </form>
-    </Form>
+    </UI.form.Form>
   );
 };
 

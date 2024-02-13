@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
+
+// libs
 import { cn } from "@/libs/utils";
-import { Navbar, Providers } from "@/components";
+
+// config
 import { siteConfig } from "@/constants/config";
+
+//shadcn
+import * as UI from "@/components/ui";
+
+// components
+import { Navbar, Providers } from "@/components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +44,7 @@ export default function RootLayout({
             <Navbar />
             <div className="flex-grow flex-1">{children}</div>
           </div>
+          <UI.Toaster />
         </Providers>
       </body>
     </html>
