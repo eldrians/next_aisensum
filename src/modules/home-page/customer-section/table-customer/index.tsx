@@ -148,28 +148,17 @@ const TableCustomerSection = () => {
     );
   }
   return (
-    <UI.card.Card className="w-full lg:w-4/6">
-      <UI.card.CardHeader className="flex flex-row justify-between">
-        <div className="flex flex-col">
-          <UI.card.CardTitle>Customers</UI.card.CardTitle>
-          <UI.card.CardDescription>
-            Here's a list of customers!
-          </UI.card.CardDescription>
-        </div>
-        <AddCustomerSection type="mobile" />
-      </UI.card.CardHeader>
-      <UI.card.CardContent>
-        {isLoading ? (
-          <TableSkeleton />
-        ) : (
-          <TableComponent
-            columns={columns}
-            data={table}
-            searchColumnName="name"
-          />
-        )}
-      </UI.card.CardContent>
-    </UI.card.Card>
+    <div>
+      {isLoading ? (
+        <TableSkeleton />
+      ) : (
+        <TableComponent
+          columns={columns}
+          data={table}
+          searchColumnName="name"
+        />
+      )}
+    </div>
   );
 };
 

@@ -35,17 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body
-        className={cn("relative h-full font-sans antialiased", inter.className)}
-      >
-        <Providers>
-          <div className="relative flex flex-col min-h-screen">
-            <Navbar />
-            <div className="flex-grow flex-1 bg-slate-100">{children}</div>
-          </div>
-          <UI.Toaster />
-        </Providers>
+    <html lang="en">
+      <body className={cn("font-sans antialiased", inter.className)}>
+        <Providers>{children}</Providers>
+        <UI.Toaster />
       </body>
     </html>
   );

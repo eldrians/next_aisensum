@@ -22,25 +22,34 @@ import { Button } from "@/components/ui/button";
 //icon
 import { Plus } from "lucide-react";
 
-const AddCustomerSection
- = ({ type = "desktop" }: { type?: "mobile" | "desktop" }) => {
+const AddCustomerSection = ({
+  type = "desktop",
+}: {
+  type?: "mobile" | "desktop";
+}) => {
   const FormType = () => {
     if (type == "desktop") {
       return (
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Add Customers | desktop</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CustomerForm />
-          </CardContent>
-        </Card>
+        <div>
+          <h1>Add Customer</h1>
+          <CustomerForm />
+        </div>
+        // <Card className="w-full">
+        //   <CardHeader>
+        //     <CardTitle>Add Customers | desktop</CardTitle>
+        //   </CardHeader>
+        //   <CardContent>
+        //     <CustomerForm />
+        //   </CardContent>
+        // </Card>
       );
     } else if (type == "mobile") {
       return (
         <Drawer>
           <DrawerTrigger asChild>
-            <Button size="xs" className="lg:hidden">
+            <Button 
+            variant="outline"
+            size="xs" className="lg:hidden">
               <Plus className="h-4 w-4 md:mr-2" />
               <span className="hidden md:block">Add</span>
             </Button>
@@ -69,5 +78,4 @@ const AddCustomerSection
   return <FormType />;
 };
 
-export default AddCustomerSection
-;
+export default AddCustomerSection;
