@@ -1,35 +1,26 @@
 import { api } from "@/libs/api";
+import { TCustomer } from "@/types/Customer";
 import {
   UseMutationResult,
+  UseQueryResult,
   useMutation,
-  useQueryClient,
+  useQuery,
 } from "@tanstack/react-query";
 
-export async function fetchCustomers() {
-  const response = await fetch("http://127.0.0.1:5000/customer");
-  const data = await response.json();
-  return data.payload || [];
-}
-
-export async function createCustomer(newPost: any) {
-  const formData = new FormData();
-  for (const key in newPost) {
-    formData.append(key, newPost[key]);
-  }
-  const response = await fetch(`http://127.0.0.1:5000/customer`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
+export const getCustomers = (): UseQueryResult => {
+  return useQuery<TCustomer[]>({
+    queryKey: ["customer"],
+    queryFn: async () => {
+      const response = await fetch("http://127.0.0.1:5000/customer");
+      const data = await response.json();
+      return data.payload || [];
     },
-    body: formData,
   });
-  return response.json();
-}
+};
 
 export const addCustomer = (): UseMutationResult => {
   return useMutation({
     mutationFn: async (data: any) => {
-      console.log("Customer Form:", data);
       const formData = new FormData();
       for (const key in data) {
         formData.append(key, data[key]);
