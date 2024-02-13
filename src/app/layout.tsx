@@ -12,7 +12,7 @@ import { siteConfig } from "@/constants/config";
 import * as UI from "@/components/ui";
 
 // components
-import { Navbar, Providers } from "@/components";
+import { Providers } from "@/components";
 
 const inter = Inter({ subsets: ["latin"] });
 
