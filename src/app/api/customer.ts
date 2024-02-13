@@ -1,3 +1,10 @@
+import { api } from "@/libs/api";
+import {
+  UseMutationResult,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+
 export async function fetchCustomers() {
   const response = await fetch("http://127.0.0.1:5000/customer");
   const data = await response.json();
@@ -18,6 +25,19 @@ export async function createCustomer(newPost: any) {
   });
   return response.json();
 }
+
+export const addCustomer = (): UseMutationResult => {
+  return useMutation({
+    mutationFn: async (data: any) => {
+      console.log("Customer Form:", data);
+      const formData = new FormData();
+      for (const key in data) {
+        formData.append(key, data[key]);
+      }
+      return await api.post("customer", formData);
+    },
+  });
+};
 
 // export async function updatePost(updatedPost) {
 //   const response = await fetch(

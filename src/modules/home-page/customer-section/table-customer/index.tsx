@@ -127,17 +127,6 @@ const TableCustomerSection = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  // const {
-  //   data: queryData,
-  //   isLoading,
-  //   isError,
-  // } = useQuery<TCustomer[]>({
-  //   queryKey: ["customer"],
-  //   queryFn: () =>
-  //     fetch("http://127.0.0.1:5000/customer")
-  //       .then((res) => res.json())
-  //       .then((data) => data.payload || []),
-  // });
 
   const {
     data: queryData,
