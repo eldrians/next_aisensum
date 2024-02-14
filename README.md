@@ -33,11 +33,23 @@ Here are the tasks that I have completed.
 
 Get Customer
 
+![getcustomer](https://github.com/eldrians/next_aisensum/assets/91566708/acff956a-42d6-445a-a8af-546bfb4a2b70)
+
+
 Add Customer
+
+![addcustomer](https://github.com/eldrians/next_aisensum/assets/91566708/299e4e28-54cb-4013-9a3c-a593bb9a3994)
+
 
 Update Customer (with patch)
 
+![updatecustomer](https://github.com/eldrians/next_aisensum/assets/91566708/84c8c762-3b38-4954-8677-d15c42359832)
+
+
 Delete Customer
+
+![deletecustomer](https://github.com/eldrians/next_aisensum/assets/91566708/3542d6d9-3dc9-4383-ac7f-479adb8f4e0b)
+
 
 ### Loading, search, filter, and pagination
 
