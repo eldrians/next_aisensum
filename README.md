@@ -3,7 +3,8 @@
 #### Access APP on [aisensum-app][3]
 
 FRONTEND - NEXT14 - [frontend-file][1]
-BACKEND - FLASK - MYSQL - [frontend-file][2]
+
+BACKEND - FLASK - MYSQL - [backend-file][2]
 
 [1]: https://github.com/eldrians/next_aisensum
 [2]: https://github.com/eldrians/flask_aisensum
@@ -11,140 +12,138 @@ BACKEND - FLASK - MYSQL - [frontend-file][2]
 
 Here are the tasks that I have completed.
 
-| Task                                                         |
-| :----------------------------------------------------------- |
-| `Frontend: Responsive application (mobile, desktop, tablet)` |
-| `Frontend: Clean-code file structure`                        |
-| `Frontend: Good Performance (Page Speed avg 90%>)`           |
-| `Frontend: Reusable Component (shadcn)`                      |
-| `Frontend: Form Validation (zod)`                            |
-| `Frontend: CRUD without Refresh (Tanstack)`                  |
-| `Backend: CRUD without Refresh (Tanstack)`                   |
-| `Frontend: CRUD without Refresh (Tanstack)`                  |
-| `Frontend: CRUD without Refresh (Tanstack)`                  |
-| `Frontend: CRUD without Refresh (Tanstack)`                  |
-| `Frontend: CRUD without Refresh (Tanstack)`                  |
+| Task                                                              |
+| :---------------------------------------------------------------- |
+| `Frontend: CRUD without Refresh (Tanstack)`                       |
+| `Frontend: loading with skeleton, Filter, Search, and Pagination` |
+| `Frontend: Responsive application (mobile, desktop, tablet)`      |
+| `Frontend: Clean-code file structure`                             |
+| `Frontend: Good Performance (Page Speed avg 90%>)`                |
+| `Frontend: Reusable Component (shadcn)`                           |
+| `Frontend: Form Validation (zod)`                                 |
+| `Backend: Create app with flask and mysql`                        |
+| `Backend: CRUD`                                                   |
+| `Backend: JWT validation (created but not applied)`               |
+| `Backend: clean-code`                                             |
+| `APP: Application are completed host on vercel`                   |
 
-## Documentation
+## FRONTEND - DOCUMENTATION
 
-### Demo
+### CRUD - Customer
 
-#### Register and Login (Sucess)
+Get Customer
 
-show alert success
+Add Customer
 
-![login-register-success-case](https://github.com/eldrians/moovd-angular/assets/91566708/3d0fdf33-da23-4a9f-81c1-497f97ddaa96)
+Update Customer (with patch)
 
-#### Register and Login (Validation)
+Delete Customer
 
-show validation if had uncorrect input or false account
+### Loading, search, filter, and pagination
 
-![login-register-failed-case](https://github.com/eldrians/moovd-angular/assets/91566708/313254de-042a-4322-bf89-873e2efd7449)
+loading with skeleton
 
-#### Live Search
+search name
 
-![search-id-type](https://github.com/eldrians/moovd-angular/assets/91566708/0fd3d01d-65e8-48bc-ab31-1a92081f67ae)
+custom header
 
-#### Sort For Any Coloumn (ID & Type)
+pagination
 
-![sort-id-type](https://github.com/eldrians/moovd-angular/assets/91566708/823dc5f9-c959-4ebf-ad46-90554caa5d64)
+### Responsive
 
-#### Detail GPS
+### Clean Code
 
-show chart and other detail information
+You can see from github
 
-![detail](https://github.com/eldrians/moovd-angular/assets/91566708/c23a7955-fe9b-409e-b6bb-659a328c5914)
+### Good Performance
 
-#### Pagination
+### Form Validation
 
-![pagination](https://github.com/eldrians/moovd-angular/assets/91566708/b807dbd8-54cd-4244-96b0-6938da3ce470)
+### Reusable component
 
-#### Responsive
+You can see from github
 
-Responsive for monitor, laptop, tablet, and smartphone
+## BACKEND - DOCUMENTATION
 
-![responsive](https://github.com/eldrians/moovd-angular/assets/91566708/976d5d6b-b83d-4595-8758-3e678e9b69f4)
+Base URL : https://flask-aisensum.vercel.app/
 
-#### Logout (with guard)
+i created JWT authentication, and autorization too, but i dont implemented because the application dont have sign up or login section. u can see from my github [backend-axel][3]
 
-The user can't access /gps because there is a guard in the route.
+### API Reference
 
-![logout](https://github.com/eldrians/moovd-angular/assets/91566708/34cb81c4-cbb1-4d30-b507-8b5977e7466b)
+#### Get all customer
 
-#### PWA
+```http
+  GET /customer
+```
 
-App can run in offline mode
+#### Get add customer
 
-![pwa](https://github.com/eldrians/moovd-angular/assets/91566708/a49599c4-c8a0-48cb-b75e-df5ba533b23c)
+```http
+  POST /customer
+```
 
-#### Test Coverage
+| form-data     | Type     |
+| :------------ | :------- |
+| `name`        | `string` |
+| `username_ig` | `string` |
+| `fav-color`   | `string` |
 
-The test coverage is not 100%, but at least it has been done using Jest with the different folder structure outside the app.
+#### Get update customer
 
-![image](https://github.com/eldrians/moovd-angular/assets/91566708/309752a5-de55-464c-8749-4fbbf1a96c22)
+```http
+  PUT /customer/<id>
+```
+
+but, i used PATCH instead PUT
+
+```http
+  PATCH /customer/patch/<id>
+```
+
+| form-data     | Type     |
+| :------------ | :------- |
+| `id`          | `number` |
+| `name`        | `string` |
+| `username_ig` | `string` |
+| `fav-color`   | `string` |
+
+#### Delete update customer
+
+```http
+  DELETE /customer/<id>
+```
+
+| form-data | Type     |
+| :-------- | :------- |
+| `id`      | `number` |
 
 ## Setup & Run
 
-### Setup
+### Setup FRONT END - NEXT JS
 
-open your terminal and run this command :
+```http
+  git clone https://github.com/eldrians/next_aisensum.git
 
-```
-  git clone https://github.com/eldrians/moovd-angular.git
-```
-
-open the application and run this command too:
-
-```
   npm i
+
+  create and fill .env.local
+
+  npm run dev
 ```
 
-```
-  ng serve
-```
+### Setup BACK END - FLASK MYSQL
 
-### Run App
+file : [flask-aisensum-github][2]
 
-run the application(terminal 1)
+```http
+  git clone https://github.com/eldrians/flask_aisensum.git
 
-```
-  npm run start
-```
+  npm i -g vercel
 
-run the json-server(terminal 2)
+  pip install mysql.connector flask_cors jwt
 
-```
-  json-server --watch db.json
-```
+  create and fill .env
 
-### Run App With PWA
-
-```
-  ng build
-```
-
-go to dist, and open integrated terminal then write this command
-
-```
-  http-server -o
-```
-
-### Run Test
-
-- test all file
-
-```
-  npm run test
-```
-
-- Test spesific file
-
-```
-  npx jest <file name>
-```
-
-- see coverage
-
-```
-  npx jest --coverage
+  Vercel dev
 ```
