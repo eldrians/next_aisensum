@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Moovd - GPS List App
+ 
+Full Document in this Link [GDrive][1] 
 
-## Getting Started
+[1]: https://drive.google.com/drive/folders/1rSFvBm9Qkak-jSgLQ1V34zvHLJ3_6wqF?usp=drive_link
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Here are the tasks that I have completed.
+
+| Task                              | 
+| :-------------------------------- |
+| `Login Page`                      |
+| `Register Page`                   |
+| `Show GPS List`                   |
+| `Show GPS Details`                |
+
+## Documentation
+
+### Demo
+
+#### Register and Login (Sucess)
+
+show alert success
+
+![login-register-success-case](https://github.com/eldrians/moovd-angular/assets/91566708/3d0fdf33-da23-4a9f-81c1-497f97ddaa96)
+
+#### Register and Login (Validation)
+
+show validation if had uncorrect input or false account
+
+![login-register-failed-case](https://github.com/eldrians/moovd-angular/assets/91566708/313254de-042a-4322-bf89-873e2efd7449)
+
+#### Live Search
+
+![search-id-type](https://github.com/eldrians/moovd-angular/assets/91566708/0fd3d01d-65e8-48bc-ab31-1a92081f67ae)
+
+#### Sort For Any Coloumn (ID & Type)
+
+![sort-id-type](https://github.com/eldrians/moovd-angular/assets/91566708/823dc5f9-c959-4ebf-ad46-90554caa5d64)
+
+#### Detail GPS
+
+show chart and other detail information
+
+![detail](https://github.com/eldrians/moovd-angular/assets/91566708/c23a7955-fe9b-409e-b6bb-659a328c5914)
+
+#### Pagination
+
+![pagination](https://github.com/eldrians/moovd-angular/assets/91566708/b807dbd8-54cd-4244-96b0-6938da3ce470)
+
+#### Responsive
+
+Responsive for monitor, laptop, tablet, and smartphone
+
+![responsive](https://github.com/eldrians/moovd-angular/assets/91566708/976d5d6b-b83d-4595-8758-3e678e9b69f4)
+
+#### Logout (with guard)
+
+The user can't access /gps because there is a guard in the route.
+
+![logout](https://github.com/eldrians/moovd-angular/assets/91566708/34cb81c4-cbb1-4d30-b507-8b5977e7466b)
+
+#### PWA
+
+App can run in offline mode
+
+
+![pwa](https://github.com/eldrians/moovd-angular/assets/91566708/a49599c4-c8a0-48cb-b75e-df5ba533b23c)
+
+#### Test Coverage
+
+The test coverage is not 100%, but at least it has been done using Jest with the different folder structure outside the app.
+
+
+![image](https://github.com/eldrians/moovd-angular/assets/91566708/309752a5-de55-464c-8749-4fbbf1a96c22)
+
+## Setup & Run
+
+### Setup
+
+open your terminal and run this command :
+
+```
+  git clone https://github.com/eldrians/moovd-angular.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+open the application and run this command too:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+  npm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+  ng serve
+```
 
-## Learn More
+### Run App
 
-To learn more about Next.js, take a look at the following resources:
+run the application(terminal 1)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+  npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+run the json-server(terminal 2)
 
-## Deploy on Vercel
+```
+  json-server --watch db.json
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Run App With PWA
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+  ng build
+```
+
+go to dist, and open integrated terminal then write this command
+
+```
+  http-server -o
+```
+
+### Run Test
+
+- test all file
+
+```
+  npm run test
+```
+
+- Test spesific file
+
+```
+  npx jest <file name>
+```
+
+- see coverage
+
+```
+  npx jest --coverage
+```
