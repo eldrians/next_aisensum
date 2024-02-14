@@ -74,6 +74,7 @@ pagination
 
 ### Responsive
 
+![responsive](https://github.com/eldrians/next_aisensum/assets/91566708/32f307a6-4a4a-4db1-b27d-189790782863)
 
 
 ### Clean Code
