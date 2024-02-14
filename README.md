@@ -55,13 +55,26 @@ Delete Customer
 
 loading with skeleton
 
+![image](https://github.com/eldrians/next_aisensum/assets/91566708/9a5a107c-cbb8-47bc-8b11-8c20810ed8ed)
+
 search name
+
+![search](https://github.com/eldrians/next_aisensum/assets/91566708/bb928757-6147-4df3-9f76-3c25bafe8668)
+
 
 custom header
 
+![custom](https://github.com/eldrians/next_aisensum/assets/91566708/3ffc6d32-c700-4627-8f13-442b5d98b3b6)
+
+
 pagination
 
+![pagination](https://github.com/eldrians/next_aisensum/assets/91566708/1a58ec4e-dbcc-4116-9c4c-6b94fe0f8aee)
+
+
 ### Responsive
+
+
 
 ### Clean Code
 
