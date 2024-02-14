@@ -83,7 +83,18 @@ You can see from github
 
 ### Good Performance
 
+mobile
+
+![image](https://github.com/eldrians/next_aisensum/assets/91566708/40e7d0b2-1020-493f-afaa-a85f6ac83781)
+
+desktop
+
+![image](https://github.com/eldrians/next_aisensum/assets/91566708/cbe5e5fa-d84a-4990-9e85-7abdbb3dea2f)
+
 ### Form Validation
+
+![validation](https://github.com/eldrians/next_aisensum/assets/91566708/6c092990-4b81-411a-b090-b8e420eb1d77)
+
 
 ### Reusable component
 
