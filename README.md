@@ -1,18 +1,29 @@
-# Moovd - GPS List App
- 
-Full Document in this Link [GDrive][1] 
+# AISENSUM Test - Axel Eldrian Hadiwibowo
 
-[1]: https://drive.google.com/drive/folders/1rSFvBm9Qkak-jSgLQ1V34zvHLJ3_6wqF?usp=drive_link
+#### Access APP on [aisensum-app][3]
 
+FRONTEND - NEXT14 - [frontend-file][1]
+BACKEND - FLASK - MYSQL - [frontend-file][2]
+
+[1]: https://github.com/eldrians/next_aisensum
+[2]: https://github.com/eldrians/flask_aisensum
+[3]: https://next-aisensum.vercel.app/
 
 Here are the tasks that I have completed.
 
-| Task                              | 
-| :-------------------------------- |
-| `Login Page`                      |
-| `Register Page`                   |
-| `Show GPS List`                   |
-| `Show GPS Details`                |
+| Task                                                         |
+| :----------------------------------------------------------- |
+| `Frontend: Responsive application (mobile, desktop, tablet)` |
+| `Frontend: Clean-code file structure`                        |
+| `Frontend: Good Performance (Page Speed avg 90%>)`           |
+| `Frontend: Reusable Component (shadcn)`                      |
+| `Frontend: Form Validation (zod)`                            |
+| `Frontend: CRUD without Refresh (Tanstack)`                  |
+| `Backend: CRUD without Refresh (Tanstack)`                   |
+| `Frontend: CRUD without Refresh (Tanstack)`                  |
+| `Frontend: CRUD without Refresh (Tanstack)`                  |
+| `Frontend: CRUD without Refresh (Tanstack)`                  |
+| `Frontend: CRUD without Refresh (Tanstack)`                  |
 
 ## Documentation
 
@@ -64,13 +75,11 @@ The user can't access /gps because there is a guard in the route.
 
 App can run in offline mode
 
-
 ![pwa](https://github.com/eldrians/moovd-angular/assets/91566708/a49599c4-c8a0-48cb-b75e-df5ba533b23c)
 
 #### Test Coverage
 
 The test coverage is not 100%, but at least it has been done using Jest with the different folder structure outside the app.
-
 
 ![image](https://github.com/eldrians/moovd-angular/assets/91566708/309752a5-de55-464c-8749-4fbbf1a96c22)
 
